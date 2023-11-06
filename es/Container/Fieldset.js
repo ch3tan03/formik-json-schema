@@ -22,7 +22,7 @@ var Fieldset = function Fieldset(_ref) {
     _ref$config$commentCl = _ref$config.commentClass,
     commentClass = _ref$config$commentCl === void 0 ? 'text-muted d-block mb-3' : _ref$config$commentCl,
     _ref$config$headerIco = _ref$config.headerIconClass,
-    headerIconClass = _ref$config$headerIco === void 0 ? 'fa fa-angle-right' : _ref$config$headerIco,
+    headerIconClass = _ref$config$headerIco === void 0 ? 'fa fa-angle-right me-2' : _ref$config$headerIco,
     _ref$config$cardClass = _ref$config.cardClass,
     cardClass = _ref$config$cardClass === void 0 ? 'card flutter-fieldset' : _ref$config$cardClass,
     _ref$config$cardHeade = _ref$config.cardHeaderClass,

@@ -14,7 +14,7 @@ const Fieldset = ({
         hasHeaderIcon = true,
         comment,
         commentClass = 'text-muted d-block mb-3',
-        headerIconClass = 'fa fa-angle-right',
+        headerIconClass = 'fa fa-angle-right me-2',
         cardClass = 'card flutter-fieldset',
         cardHeaderClass = 'card-header bg-primary-subtle',
         cardHeaderIconCollapsedClass = 'fas fa-angle-down',
