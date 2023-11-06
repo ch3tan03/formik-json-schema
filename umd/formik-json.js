@@ -60127,11 +60127,11 @@ var Fieldset_Fieldset = function Fieldset(_ref) {
     _ref$config$commentCl = _ref$config.commentClass,
     commentClass = _ref$config$commentCl === void 0 ? 'text-muted d-block mb-3' : _ref$config$commentCl,
     _ref$config$headerIco = _ref$config.headerIconClass,
-    headerIconClass = _ref$config$headerIco === void 0 ? 'fa fa-align-justify' : _ref$config$headerIco,
+    headerIconClass = _ref$config$headerIco === void 0 ? 'fa fa-angle-right' : _ref$config$headerIco,
     _ref$config$cardClass = _ref$config.cardClass,
     cardClass = _ref$config$cardClass === void 0 ? 'card flutter-fieldset' : _ref$config$cardClass,
     _ref$config$cardHeade = _ref$config.cardHeaderClass,
-    cardHeaderClass = _ref$config$cardHeade === void 0 ? 'card-header' : _ref$config$cardHeade,
+    cardHeaderClass = _ref$config$cardHeade === void 0 ? 'card-header bg-primary-subtle' : _ref$config$cardHeade,
     _ref$config$cardHeade2 = _ref$config.cardHeaderIconCollapsedClass,
     cardHeaderIconCollapsedClass = _ref$config$cardHeade2 === void 0 ? 'fas fa-angle-down' : _ref$config$cardHeade2,
     _ref$config$cardHeade3 = _ref$config.cardHeaderIconDisclosedClass,
@@ -60160,9 +60160,9 @@ var Fieldset_Fieldset = function Fieldset(_ref) {
   }, hasHeaderIcon && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("i", {
     className: headerIconClass
   }), title, collapsible && /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
-    className: cardHeaderActionsClass
+    className: cardHeaderActionsClass + ' float-end'
   }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
-    className: "card-header-action btn btn-minimize"
+    className: "card-header-action btn-minimize"
   }, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("i", {
     className: isCollapsed ? cardHeaderIconCollapsedClass : cardHeaderIconDisclosedClass
   })))), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
@@ -62278,7 +62278,7 @@ var Default_Default = function Default(_ref) {
     _ref$wrapAs = _ref.wrapAs,
     wrapAs = _ref$wrapAs === void 0 ? 'div' : _ref$wrapAs,
     _ref$htmlClass = _ref.htmlClass,
-    htmlClass = _ref$htmlClass === void 0 ? 'form-group' : _ref$htmlClass,
+    htmlClass = _ref$htmlClass === void 0 ? 'form-group mb-3' : _ref$htmlClass,
     _ref$commentClass = _ref.commentClass,
     commentClass = _ref$commentClass === void 0 ? 'text-muted order-last' : _ref$commentClass,
     _ref$commentAs = _ref.commentAs,

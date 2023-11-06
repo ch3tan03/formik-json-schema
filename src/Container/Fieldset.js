@@ -14,9 +14,9 @@ const Fieldset = ({
         hasHeaderIcon = true,
         comment,
         commentClass = 'text-muted d-block mb-3',
-        headerIconClass = 'fa fa-align-justify',
+        headerIconClass = 'fa fa-angle-right',
         cardClass = 'card flutter-fieldset',
-        cardHeaderClass = 'card-header',
+        cardHeaderClass = 'card-header bg-primary-subtle',
         cardHeaderIconCollapsedClass = 'fas fa-angle-down',
         cardHeaderIconDisclosedClass = 'fas fa-angle-up',
         cardHeaderActionsClass = 'card-header-actions',
@@ -38,8 +38,8 @@ const Fieldset = ({
                 <div className={ cardHeaderClass } onClick={ toggle }>
                     { hasHeaderIcon && <i className={ headerIconClass }></i> }
                     { title }
-                    { collapsible && <div className={ cardHeaderActionsClass }>
-                        <a className="card-header-action btn btn-minimize">
+                    { collapsible && <div className={ cardHeaderActionsClass+ ' float-end'}>
+                        <a className="card-header-action btn-minimize">
                             <i className={ isCollapsed ?  cardHeaderIconCollapsedClass : cardHeaderIconDisclosedClass }></i>
                         </a>
                     </div> }

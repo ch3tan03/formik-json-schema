@@ -12,7 +12,7 @@ const Default = ({
     error,
     labelClass = '',
     wrapAs = 'div',
-    htmlClass = 'form-group',
+    htmlClass = 'form-group mb-3',
     commentClass = 'text-muted order-last',
     commentAs: CommentComponent = 'small',
     errorClass,
