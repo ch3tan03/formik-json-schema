@@ -17,8 +17,7 @@ const thumb = {
     border: '1px solid #eaeaea',
     marginBottom: 8,
     marginRight: 8,
-    width: 100,
-    height: 100,
+ 
     padding: 4,
     boxSizing: 'border-box'
 }
@@ -31,8 +30,9 @@ const thumbInner = {
 
 const img = {
     display: 'block',
-    width: 'auto',
-    height: '100%'
+    width: 150,
+    height: 150,
+objectFit: 'contain'
 }
 
 const baseStyle = {
@@ -73,7 +73,7 @@ const FileUploader = ({ config, formik, value, error }) => {
         placeholder,
         disabledText,
         zoneActiveText,
-        hasThumbs = false
+        hasThumbs = true
     } = config;
     const { setFieldValue } = formik;
     const selectedValue = value;
@@ -85,6 +85,11 @@ const FileUploader = ({ config, formik, value, error }) => {
         isDragAccept,
         isDragReject
     } = useDropzone({ ...prepareFileUploderOptions({ ...options }, formik, config) });
+
+    let thumbs = acceptedFiles.map(file => Object.assign(file, {
+        url: URL.createObjectURL(file)
+    }));
+    console.log(thumbs)
 
     const style = useMemo(() => ({
         ...baseStyle,
@@ -98,21 +103,27 @@ const FileUploader = ({ config, formik, value, error }) => {
 
     return (
         <section>
-            <div { ...getRootProps({ style }) }>
-                <input { ...getInputProps() } />
-                { isDragActive
+            <div {...getRootProps({ style })}>
+                <input {...getInputProps()} />
+                {isDragActive
                     ? <p>Drop the files here ...</p>
                     : <p>Drag 'n' drop some files here, or click to select files</p>
-                 }
+                }
             </div>
-            <aside style={ thumbsContainer }>
-                { value && (hasThumbs ? value.map(file => (
-                    <div style={ thumb } key={ file.id }>
-                        <div style={ thumbInner }>
-                            <img src={ file.url } alt={ file.label } style={ img } />
+            <aside style={thumbsContainer}>
+                {thumbs && (hasThumbs ? thumbs.map(file => (
+                    <div style={thumb} key={file.id}>
+                        <div style={thumbInner}>
+                            <img src={file.url} alt={file.label} style={img} />
+                          
+                          
                         </div>
+                        {/* <div>
+                        {file.path}
+                        </div> */}
+                      
                     </div>
-                )) : <ul>{ value.map(file => <li key={ file.id }>{ file.url }</li>) }</ul> )}
+                )) : <ul>{thumbs.map(file => <li key={file.id}>{file.url}</li>)}</ul>)}
             </aside>
         </section>
     );
