@@ -52803,8 +52803,9 @@ var Checkbox_Checkbox = function Checkbox(_ref) {
       name: name + "." + key,
       className: fieldClass + (error ? ' is-invalid ' : ''),
       type: "checkbox",
-      checked: checkboxValue[key] || false,
+      checked: checkboxValue[key] == 'on',
       onChange: function onChange(event) {
+        console.log('mycheckbox---->', event.target.checked, checkboxValue);
         utils_changeHandler(handleChange, formik, config, event);
         handleBlur(event);
       }
