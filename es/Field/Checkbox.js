@@ -36,9 +36,11 @@ var Checkbox = function Checkbox(_ref) {
       name: name + "." + key,
       className: fieldClass + (error ? ' is-invalid ' : ''),
       type: "checkbox",
-      checked: checkboxValue[key] == 'on',
+      checked: checkboxValue[key] == 'on'
+      //checked={ checkboxValue[key] || false }
+      ,
       onChange: function onChange(event) {
-        console.log('mycheckbox---->', event.target.checked, checkboxValue);
+        // console.log('mycheckbox---->', event.target.checked, checkboxValue) 
         changeHandler(handleChange, formik, config, event);
         handleBlur(event);
       }

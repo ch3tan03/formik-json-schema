@@ -26,9 +26,9 @@ const Checkbox = ({ config, formik, value, error }) => {
                         className={ fieldClass + ( error ? ' is-invalid ' : '' ) }
                         type="checkbox"
                         checked={ checkboxValue[key]=='on'  }
+                        //checked={ checkboxValue[key] || false }
                         onChange={ event => {
-                            console.log('mycheckbox---->', event.target.checked, checkboxValue) 
-
+                           // console.log('mycheckbox---->', event.target.checked, checkboxValue) 
                             changeHandler(handleChange, formik, config, event);
                             handleBlur(event);
                         }}

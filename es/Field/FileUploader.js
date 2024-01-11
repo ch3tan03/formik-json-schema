@@ -65,6 +65,7 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
   options.onDropRejected = onDropRejected ? onDropRejected.bind(_this, formik, config) : null;
   return options;
 };
+var thumbs = [];
 var FileUploader = function FileUploader(_ref3) {
   var config = _ref3.config,
     formik = _ref3.formik,
@@ -86,12 +87,16 @@ var FileUploader = function FileUploader(_ref3) {
     isDragActive = _useDropzone.isDragActive,
     isDragAccept = _useDropzone.isDragAccept,
     isDragReject = _useDropzone.isDragReject;
-  var thumbs = acceptedFiles.map(function (file) {
+  var thumbs1 = acceptedFiles.map(function (file) {
     return Object.assign(file, {
       url: URL.createObjectURL(file)
     });
   });
-  console.log(thumbs);
+  console.log(thumbs1);
+  thumbs = thumbs.concat(thumbs1);
+  thumbs = thumbs.filter(function (value, index, array) {
+    return array.indexOf(value) === index;
+  });
   var style = useMemo(function () {
     return _extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);

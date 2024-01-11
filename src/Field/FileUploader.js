@@ -65,7 +65,7 @@ const prepareFileUploderOptions = ({ onDrop, onDropAccepted, onDropRejected, ...
 
     return options;
 }
-
+let thumbs =[]
 const FileUploader = ({ config, formik, value, error }) => {
     const {
         name,
@@ -86,10 +86,12 @@ const FileUploader = ({ config, formik, value, error }) => {
         isDragReject
     } = useDropzone({ ...prepareFileUploderOptions({ ...options }, formik, config) });
 
-    let thumbs = acceptedFiles.map(file => Object.assign(file, {
+     let thumbs1 = acceptedFiles.map(file => Object.assign(file, {
         url: URL.createObjectURL(file)
     }));
-    console.log(thumbs)
+    console.log(thumbs1)
+    thumbs = thumbs.concat(thumbs1)
+    thumbs  = thumbs .filter((value, index, array) => array.indexOf(value) === index);
 
     const style = useMemo(() => ({
         ...baseStyle,
