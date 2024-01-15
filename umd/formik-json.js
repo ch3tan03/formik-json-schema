@@ -59701,7 +59701,6 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
   options.onDropRejected = onDropRejected ? onDropRejected.bind(FileUploader_this, formik, config) : null;
   return options;
 };
-var thumbs = [];
 var FileUploader_FileUploader = function FileUploader(_ref3) {
   var config = _ref3.config,
     formik = _ref3.formik,
@@ -59723,16 +59722,12 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
     isDragActive = _useDropzone.isDragActive,
     isDragAccept = _useDropzone.isDragAccept,
     isDragReject = _useDropzone.isDragReject;
-  var thumbs1 = acceptedFiles.map(function (file) {
+  var thumbs = acceptedFiles.map(function (file) {
     return Object.assign(file, {
       url: URL.createObjectURL(file)
     });
   });
-  console.log(thumbs1);
-  thumbs = thumbs.concat(thumbs1);
-  thumbs = thumbs.filter(function (value, index, array) {
-    return array.indexOf(value) === index;
-  });
+  console.log(thumbs);
   var style = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useMemo"])(function () {
     return FileUploader_extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);

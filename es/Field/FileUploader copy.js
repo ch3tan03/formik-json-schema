@@ -2,7 +2,7 @@ var _excluded = ["onDrop", "onDropAccepted", "onDropRejected"];
 var _this = this;
 function _extends() { _extends = Object.assign ? Object.assign.bind() : function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) return {}; var target = {}; var sourceKeys = Object.keys(source); var key, i; for (i = 0; i < sourceKeys.length; i++) { key = sourceKeys[i]; if (excluded.indexOf(key) >= 0) continue; target[key] = source[key]; } return target; }
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { changeHandler } from '../utils';
 var Thumb = function Thumb(_ref) {
@@ -79,6 +79,10 @@ var FileUploader = function FileUploader(_ref3) {
     hasThumbs = _config$hasThumbs === void 0 ? true : _config$hasThumbs;
   var setFieldValue = formik.setFieldValue;
   var selectedValue = value;
+  var _useState = useState(""),
+    previews = _useState[0],
+    setPreviews = _useState[1];
+  var thumbs = [];
   var _useDropzone = useDropzone(_extends({}, prepareFileUploderOptions(_extends({}, options), formik, config))),
     acceptedFiles = _useDropzone.acceptedFiles,
     getRootProps = _useDropzone.getRootProps,
@@ -86,20 +90,30 @@ var FileUploader = function FileUploader(_ref3) {
     isDragActive = _useDropzone.isDragActive,
     isDragAccept = _useDropzone.isDragAccept,
     isDragReject = _useDropzone.isDragReject;
-  var thumbs = acceptedFiles.map(function (file) {
+  var thumbs1 = acceptedFiles.map(function (file) {
     return Object.assign(file, {
       url: URL.createObjectURL(file)
     });
   });
-  console.log(thumbs);
+  console.log(thumbs1);
+  thumbs = thumbs.concat(thumbs1);
+  thumbs = thumbs.filter(function (value, index, array) {
+    return array.indexOf(value) === index;
+  });
   var style = useMemo(function () {
     return _extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);
+  var removethumb = function removethumb(index) {
+    console.log(index);
+    thumbs.splice(index, 1);
+    console.log(thumbs);
+    setPreviews(thumbs);
+  };
   return /*#__PURE__*/React.createElement("section", null, /*#__PURE__*/React.createElement("div", getRootProps({
     style: style
   }), /*#__PURE__*/React.createElement("input", getInputProps()), isDragActive ? /*#__PURE__*/React.createElement("p", null, "Drop the files here ...") : /*#__PURE__*/React.createElement("p", null, "Drag 'n' drop some files here, or click to select files")), /*#__PURE__*/React.createElement("aside", {
     style: thumbsContainer
-  }, thumbs && (hasThumbs ? thumbs.map(function (file) {
+  }, thumbs && (hasThumbs ? thumbs.map(function (file, index) {
     return /*#__PURE__*/React.createElement("div", {
       style: thumb,
       key: file.id
@@ -109,7 +123,13 @@ var FileUploader = function FileUploader(_ref3) {
       src: file.url,
       alt: file.label,
       style: img
-    })));
+    })), /*#__PURE__*/React.createElement("button", {
+      type: "button",
+      className: "btn btn-sm btn-link",
+      onClick: function onClick() {
+        return removethumb(index);
+      }
+    }, "Remove ", index));
   }) : /*#__PURE__*/React.createElement("ul", null, thumbs.map(function (file) {
     return /*#__PURE__*/React.createElement("li", {
       key: file.id
