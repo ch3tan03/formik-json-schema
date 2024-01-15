@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { changeHandler } from '../utils';
 
@@ -77,6 +77,8 @@ const FileUploader = ({ config, formik, value, error }) => {
     } = config;
     const { setFieldValue } = formik;
     const selectedValue = value;
+    const [previews, setPreviews] = useState("");
+    let thumbs =[]
     const {
         acceptedFiles,
         getRootProps,
@@ -86,10 +88,12 @@ const FileUploader = ({ config, formik, value, error }) => {
         isDragReject
     } = useDropzone({ ...prepareFileUploderOptions({ ...options }, formik, config) });
 
-    let thumbs = acceptedFiles.map(file => Object.assign(file, {
+     let thumbs1 = acceptedFiles.map(file => Object.assign(file, {
         url: URL.createObjectURL(file)
     }));
-    console.log(thumbs)
+    console.log(thumbs1)
+    thumbs = thumbs.concat(thumbs1)
+    thumbs  = thumbs .filter((value, index, array) => array.indexOf(value) === index);
 
     const style = useMemo(() => ({
         ...baseStyle,
@@ -100,7 +104,14 @@ const FileUploader = ({ config, formik, value, error }) => {
         isDragActive,
         isDragReject
     ]);
+    
 
+    const removethumb = (index) => {
+        console.log(index)
+       thumbs.splice(index, 1)
+        console.log(thumbs)
+        setPreviews(thumbs)
+    }
     return (
         <section>
             <div {...getRootProps({ style })}>
@@ -111,13 +122,14 @@ const FileUploader = ({ config, formik, value, error }) => {
                 }
             </div>
             <aside style={thumbsContainer}>
-                {thumbs && (hasThumbs ? thumbs.map(file => (
+                {thumbs && (hasThumbs ? thumbs.map((file,index) => (
                     <div style={thumb} key={file.id}>
                         <div style={thumbInner}>
                             <img src={file.url} alt={file.label} style={img} />
                           
-                          
+                           
                         </div>
+                        <button type='button' className='btn btn-sm btn-link' onClick={()=>removethumb(index)}>Remove {index}</button>
                         {/* <div>
                         {file.path}
                         </div> */}
