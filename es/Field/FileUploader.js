@@ -27,7 +27,7 @@ var thumb = {
   boxSizing: 'border-box'
 };
 var thumbInner = {
-  // display: 'flex',
+  display: 'flex',
   minWidth: 0,
   overflow: 'hidden'
 };
@@ -120,15 +120,7 @@ var FileUploader = function FileUploader(_ref3) {
       src: file.url,
       alt: file.label,
       style: img
-    }), /*#__PURE__*/React.createElement("a", {
-      className: "text-center small ms-1",
-      style: {
-        fontSize: 10,
-        cursor: 'pointer'
-      }
-    }, " ", /*#__PURE__*/React.createElement("i", {
-      "class": "fa fa-times"
-    }), " Remove")));
+    })));
   }) : /*#__PURE__*/React.createElement("ul", null, thumbs.map(function (file) {
     return /*#__PURE__*/React.createElement("li", {
       key: file.id

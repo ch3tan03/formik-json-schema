@@ -24,7 +24,7 @@ const thumb = {
 }
 
 const thumbInner = {
-    // display: 'flex',
+     display: 'flex',
     minWidth: 0,
     overflow: 'hidden'
 }
@@ -133,7 +133,7 @@ const FileUploader = ({ config, formik, value, error }) => {
                        
                             <img src={file.url} alt={file.label} style={img} />
                           
-                            <a className='text-center small ms-1' style={{fontSize: 10, cursor: 'pointer'}}> <i class="fa fa-times"></i> Remove</a>
+                            {/* <a className='text-center small ms-1' style={{fontSize: 10, cursor: 'pointer'}}> <i class="fa fa-times"></i> Remove</a> */}
                         </div>
                        
                        
