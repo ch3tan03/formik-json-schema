@@ -59771,7 +59771,8 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
     }, file.url);
   })))));
 };
-/* harmony default export */ var Field_FileUploader = (external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.memo(FileUploader_FileUploader));
+/* harmony default export */ var Field_FileUploader = (FileUploader_FileUploader);
+//export default React.memo(FileUploader)
 // EXTERNAL MODULE: ./node_modules/react-autosuggest/dist/index.js
 var react_autosuggest_dist = __webpack_require__(132);
 var react_autosuggest_dist_default = /*#__PURE__*/__webpack_require__.n(react_autosuggest_dist);

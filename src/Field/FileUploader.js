@@ -143,5 +143,5 @@ const FileUploader = ({ config, formik, value, error }) => {
         </section>
     );
 }
-
-export default React.memo(FileUploader)
+export default FileUploader
+//export default React.memo(FileUploader)

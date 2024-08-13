@@ -135,4 +135,5 @@ var FileUploader = function FileUploader(_ref3) {
     }, file.url);
   })))));
 };
-export default React.memo(FileUploader);
+export default FileUploader;
+//export default React.memo(FileUploader)
