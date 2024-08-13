@@ -59702,12 +59702,17 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
   options.onDropRejected = onDropRejected ? onDropRejected.bind(FileUploader_this, formik, config) : null;
   return options;
 };
-var thumbs = [];
+var thumbset = {};
 var FileUploader_FileUploader = function FileUploader(_ref3) {
   var config = _ref3.config,
     formik = _ref3.formik,
     value = _ref3.value,
     error = _ref3.error;
+  console.log('config, formik, value', config.name);
+  if (!thumbset[config.name]) {
+    thumbset[config.name] = [];
+  }
+  var thumbs = [];
   var name = config.name,
     options = config.options,
     placeholder = config.placeholder,
@@ -59729,7 +59734,7 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
       url: URL.createObjectURL(file)
     });
   });
-  thumbs = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.unionBy(thumbs_new, thumbs, 'path');
+  thumbset[config.name] = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.unionBy(thumbs_new, thumbset[config.name], 'path');
 
   // thumbs = thumbs?.concat(thumbs_new);
 
@@ -59741,7 +59746,7 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
     style: style
   }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("input", getInputProps()), isDragActive ? /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, "Drop the files here ...") : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("p", null, "Drag 'n' drop some files here, or click to select files")), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("aside", {
     style: thumbsContainer
-  }, thumbs && (hasThumbs ? thumbs.map(function (file) {
+  }, thumbs && (hasThumbs ? thumbset[config.name].map(function (file) {
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", {
       style: thumb,
       key: file.id

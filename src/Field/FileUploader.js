@@ -66,9 +66,15 @@ const prepareFileUploderOptions = ({ onDrop, onDropAccepted, onDropRejected, ...
 
     return options;
 }
-let thumbs =[]
 
+
+let thumbset = {}
 const FileUploader = ({ config, formik, value, error }) => {
+    console.log('config, formik, value',config.name)
+    if(!thumbset[config.name]){
+        thumbset[config.name] =[]
+    }
+    let thumbs =[]
     const {
         name,
         options,
@@ -93,7 +99,7 @@ const FileUploader = ({ config, formik, value, error }) => {
     }));
 
   
-     thumbs = _.unionBy(thumbs_new, thumbs, 'path');
+    thumbset[config.name] = _.unionBy(thumbs_new, thumbset[config.name], 'path');
 
     // thumbs = thumbs?.concat(thumbs_new);
 
@@ -120,7 +126,7 @@ const FileUploader = ({ config, formik, value, error }) => {
                 }
             </div>
             <aside style={thumbsContainer}>
-                {thumbs && (hasThumbs ? thumbs.map(file => (
+                {thumbs && (hasThumbs ? thumbset[config.name].map(file => (
                     <div style={thumb} key={file.id}>
                         
                         <div style={thumbInner}>

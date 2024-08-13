@@ -241,7 +241,7 @@ export default {
                 },
                 validation: [['string'], ['required'], ['min', 100]]
             },
-            fileUploader: {
+            fileUploader2: {
                 name: "fileUploader",
                 label: "File Uploader",
                 type: "field",
@@ -254,6 +254,21 @@ export default {
                     }
                 }
             },
+
+            fileUploader: {
+                name: "fileUploader1",
+                label: "File Uploader",
+                type: "field",
+                renderer: "file-uploader",
+                options: {
+                    accept: ['image/*', 'text/*'],
+                    multiple: true,
+                    onDrop: (formik, config, acceptedFiles) => {
+                        console.log(formik, config, acceptedFiles);
+                    }
+                }
+            },
+            
             buttonsGroup: {
                 type: "container",
                 renderer: "button-group",
