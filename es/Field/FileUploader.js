@@ -26,7 +26,7 @@ var thumb = {
   boxSizing: 'border-box'
 };
 var thumbInner = {
-  display: 'flex',
+  // display: 'flex',
   minWidth: 0,
   overflow: 'hidden'
 };
@@ -65,7 +65,9 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
   options.onDropRejected = onDropRejected ? onDropRejected.bind(_this, formik, config) : null;
   return options;
 };
+var thumbs = [];
 var FileUploader = function FileUploader(_ref3) {
+  var _thumbs;
   var config = _ref3.config,
     formik = _ref3.formik,
     value = _ref3.value,
@@ -86,12 +88,17 @@ var FileUploader = function FileUploader(_ref3) {
     isDragActive = _useDropzone.isDragActive,
     isDragAccept = _useDropzone.isDragAccept,
     isDragReject = _useDropzone.isDragReject;
-  var thumbs = acceptedFiles.map(function (file) {
+  var thumbs_new = acceptedFiles.map(function (file) {
     return Object.assign(file, {
       url: URL.createObjectURL(file)
     });
   });
-  console.log(thumbs);
+  var union = function union(arr) {
+    return [].concat(new Set(arr.flat()));
+  };
+  thumbs = (_thumbs = thumbs) === null || _thumbs === void 0 ? void 0 : _thumbs.concat(thumbs_new);
+  thumbs = union(thumbs);
+  console.log('thumbs', union(thumbs));
   var style = useMemo(function () {
     return _extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);
@@ -109,7 +116,15 @@ var FileUploader = function FileUploader(_ref3) {
       src: file.url,
       alt: file.label,
       style: img
-    })));
+    }), /*#__PURE__*/React.createElement("a", {
+      className: "text-center small ms-1",
+      style: {
+        fontSize: 10,
+        cursor: 'pointer'
+      }
+    }, " ", /*#__PURE__*/React.createElement("i", {
+      "class": "fa fa-times"
+    }), " Remove")));
   }) : /*#__PURE__*/React.createElement("ul", null, thumbs.map(function (file) {
     return /*#__PURE__*/React.createElement("li", {
       key: file.id

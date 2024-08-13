@@ -23,7 +23,7 @@ const thumb = {
 }
 
 const thumbInner = {
-    display: 'flex',
+    // display: 'flex',
     minWidth: 0,
     overflow: 'hidden'
 }
@@ -65,6 +65,7 @@ const prepareFileUploderOptions = ({ onDrop, onDropAccepted, onDropRejected, ...
 
     return options;
 }
+let thumbs =[]
 
 const FileUploader = ({ config, formik, value, error }) => {
     const {
@@ -86,10 +87,18 @@ const FileUploader = ({ config, formik, value, error }) => {
         isDragReject
     } = useDropzone({ ...prepareFileUploderOptions({ ...options }, formik, config) });
 
-    let thumbs = acceptedFiles.map(file => Object.assign(file, {
+    let thumbs_new = acceptedFiles.map(file => Object.assign(file, {
         url: URL.createObjectURL(file)
     }));
-    console.log(thumbs)
+
+    const union = (arr) => {
+        return [  ...new Set( arr.flat() )  ];
+      }
+
+     thumbs = thumbs?.concat(thumbs_new);
+
+     thumbs = union(thumbs)
+    console.log('thumbs',union(thumbs))
 
     const style = useMemo(() => ({
         ...baseStyle,
@@ -113,15 +122,15 @@ const FileUploader = ({ config, formik, value, error }) => {
             <aside style={thumbsContainer}>
                 {thumbs && (hasThumbs ? thumbs.map(file => (
                     <div style={thumb} key={file.id}>
+                        
                         <div style={thumbInner}>
+                       
                             <img src={file.url} alt={file.label} style={img} />
                           
-                          
+                            <a className='text-center small ms-1' style={{fontSize: 10, cursor: 'pointer'}}> <i class="fa fa-times"></i> Remove</a>
                         </div>
-                        {/* <div>
-                        {file.path}
-                        </div> */}
-                      
+                       
+                       
                     </div>
                 )) : <ul>{thumbs.map(file => <li key={file.id}>{file.url}</li>)}</ul>)}
             </aside>

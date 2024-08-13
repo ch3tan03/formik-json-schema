@@ -48800,9 +48800,9 @@ var _Promise_Promise = _getNative(_root["a" /* default */], 'Promise');
 
 
 /* Built-in method references that are verified to be native. */
-var Set = _getNative(_root["a" /* default */], 'Set');
+var _Set_Set = _getNative(_root["a" /* default */], 'Set');
 
-/* harmony default export */ var _Set = (Set);
+/* harmony default export */ var _Set = (_Set_Set);
 
 // CONCATENATED MODULE: ./node_modules/lodash-es/_WeakMap.js
 
@@ -59662,7 +59662,7 @@ var thumb = {
   boxSizing: 'border-box'
 };
 var thumbInner = {
-  display: 'flex',
+  // display: 'flex',
   minWidth: 0,
   overflow: 'hidden'
 };
@@ -59701,7 +59701,9 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
   options.onDropRejected = onDropRejected ? onDropRejected.bind(FileUploader_this, formik, config) : null;
   return options;
 };
+var thumbs = [];
 var FileUploader_FileUploader = function FileUploader(_ref3) {
+  var _thumbs;
   var config = _ref3.config,
     formik = _ref3.formik,
     value = _ref3.value,
@@ -59722,12 +59724,17 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
     isDragActive = _useDropzone.isDragActive,
     isDragAccept = _useDropzone.isDragAccept,
     isDragReject = _useDropzone.isDragReject;
-  var thumbs = acceptedFiles.map(function (file) {
+  var thumbs_new = acceptedFiles.map(function (file) {
     return Object.assign(file, {
       url: URL.createObjectURL(file)
     });
   });
-  console.log(thumbs);
+  var union = function union(arr) {
+    return [].concat(new Set(arr.flat()));
+  };
+  thumbs = (_thumbs = thumbs) === null || _thumbs === void 0 ? void 0 : _thumbs.concat(thumbs_new);
+  thumbs = union(thumbs);
+  console.log('thumbs', union(thumbs));
   var style = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useMemo"])(function () {
     return FileUploader_extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);
@@ -59745,7 +59752,15 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
       src: file.url,
       alt: file.label,
       style: img
-    })));
+    }), /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("a", {
+      className: "text-center small ms-1",
+      style: {
+        fontSize: 10,
+        cursor: 'pointer'
+      }
+    }, " ", /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("i", {
+      "class": "fa fa-times"
+    }), " Remove")));
   }) : /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("ul", null, thumbs.map(function (file) {
     return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("li", {
       key: file.id
