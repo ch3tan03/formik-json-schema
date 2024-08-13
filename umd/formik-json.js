@@ -48800,9 +48800,9 @@ var _Promise_Promise = _getNative(_root["a" /* default */], 'Promise');
 
 
 /* Built-in method references that are verified to be native. */
-var _Set_Set = _getNative(_root["a" /* default */], 'Set');
+var Set = _getNative(_root["a" /* default */], 'Set');
 
-/* harmony default export */ var _Set = (_Set_Set);
+/* harmony default export */ var _Set = (Set);
 
 // CONCATENATED MODULE: ./node_modules/lodash-es/_WeakMap.js
 
@@ -59641,6 +59641,7 @@ function FileUploader_objectWithoutPropertiesLoose(source, excluded) { if (sourc
 
 
 
+
 var FileUploader_Thumb = function Thumb(_ref) {
   var key = _ref.key,
     file = _ref.file;
@@ -59703,7 +59704,6 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
 };
 var thumbs = [];
 var FileUploader_FileUploader = function FileUploader(_ref3) {
-  var _thumbs;
   var config = _ref3.config,
     formik = _ref3.formik,
     value = _ref3.value,
@@ -59729,12 +59729,11 @@ var FileUploader_FileUploader = function FileUploader(_ref3) {
       url: URL.createObjectURL(file)
     });
   });
-  var union = function union(arr) {
-    return [].concat(new Set(arr.flat()));
-  };
-  thumbs = (_thumbs = thumbs) === null || _thumbs === void 0 ? void 0 : _thumbs.concat(thumbs_new);
-  thumbs = union(thumbs);
-  console.log('thumbs', union(thumbs));
+  thumbs = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.unionBy(thumbs_new, thumbs, 'path');
+
+  // thumbs = thumbs?.concat(thumbs_new);
+
+  console.log('thumbs', thumbs);
   var style = Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useMemo"])(function () {
     return FileUploader_extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);

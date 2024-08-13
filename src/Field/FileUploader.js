@@ -1,6 +1,7 @@
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { changeHandler } from '../utils';
+import _ from 'lodash';
 
 const Thumb = ({ key, file }) => <div />
 
@@ -91,14 +92,13 @@ const FileUploader = ({ config, formik, value, error }) => {
         url: URL.createObjectURL(file)
     }));
 
-    const union = (arr) => {
-        return [  ...new Set( arr.flat() )  ];
-      }
+  
+     thumbs = _.unionBy(thumbs_new, thumbs, 'path');
 
-     thumbs = thumbs?.concat(thumbs_new);
+    // thumbs = thumbs?.concat(thumbs_new);
 
-     thumbs = union(thumbs)
-    console.log('thumbs',union(thumbs))
+
+    console.log('thumbs',(thumbs))
 
     const style = useMemo(() => ({
         ...baseStyle,

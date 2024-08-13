@@ -5,6 +5,7 @@ function _objectWithoutPropertiesLoose(source, excluded) { if (source == null) r
 import React, { useMemo } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { changeHandler } from '../utils';
+import _ from 'lodash';
 var Thumb = function Thumb(_ref) {
   var key = _ref.key,
     file = _ref.file;
@@ -67,7 +68,6 @@ var prepareFileUploderOptions = function prepareFileUploderOptions(_ref2, formik
 };
 var thumbs = [];
 var FileUploader = function FileUploader(_ref3) {
-  var _thumbs;
   var config = _ref3.config,
     formik = _ref3.formik,
     value = _ref3.value,
@@ -93,12 +93,11 @@ var FileUploader = function FileUploader(_ref3) {
       url: URL.createObjectURL(file)
     });
   });
-  var union = function union(arr) {
-    return [].concat(new Set(arr.flat()));
-  };
-  thumbs = (_thumbs = thumbs) === null || _thumbs === void 0 ? void 0 : _thumbs.concat(thumbs_new);
-  thumbs = union(thumbs);
-  console.log('thumbs', union(thumbs));
+  thumbs = _.unionBy(thumbs_new, thumbs, 'path');
+
+  // thumbs = thumbs?.concat(thumbs_new);
+
+  console.log('thumbs', thumbs);
   var style = useMemo(function () {
     return _extends({}, baseStyle, isDragActive ? activeStyle : {}, isDragAccept ? acceptStyle : {}, isDragReject ? rejectStyle : {});
   }, [isDragActive, isDragReject]);
