@@ -1,6 +1,9 @@
 import _ from 'lodash';
 import React, { useState } from 'react';
 import { useFormikContext } from 'formik';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 /**
  * Error manager component that displays error only when it's right
@@ -23,11 +26,18 @@ import { useFormikContext } from 'formik';
 const ErrorManager = ({ name, children }) => {
     // Set submitCount on initial mount.
     const formik = useFormikContext();
-    const { submitCount: formikSubmitCount, isSubmitting, errors, touched } = useFormikContext();
+    const { submitCount: formikSubmitCount, isSubmitting, errors, touched,initialError } = useFormikContext();
     const [ submitCount ] = useState(isSubmitting ? formikSubmitCount - 1 : formikSubmitCount);
     const isTouched = _.get(touched, name);
     const errorMessage = _.get(errors, name);
     const error = !_.isEmpty(errorMessage) && (isTouched || formikSubmitCount > submitCount) ? errorMessage : false;
+    if(error && isSubmitting && formikSubmitCount===1){
+       // console.log('error--->',error, isSubmitting, formikSubmitCount)
+        toast.error(error);
+
+    
+    }
+  
 
     return children(error);
 };

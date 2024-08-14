@@ -26,7 +26,9 @@ var Default = function Default(_ref) {
     CommentComponent = _ref$commentAs === void 0 ? 'small' : _ref$commentAs,
     errorClass = _ref.errorClass,
     errorAs = _ref.errorAs,
-    children = _ref.children;
+    children = _ref.children,
+    validation = _ref.validation;
+  // console.log('validation----',validation)
   var Component = !wrapAs ? Fragment : wrapAs;
   var componentProps = !wrapAs ? {} : {
     className: htmlClass,
@@ -35,7 +37,9 @@ var Default = function Default(_ref) {
   return /*#__PURE__*/React.createElement(Component, componentProps, label && /*#__PURE__*/React.createElement(Label, {
     htmlFor: name,
     className: labelClass
-  }, label), children, comment && /*#__PURE__*/React.createElement(CommentComponent, {
+  }, label, (validation === null || validation === void 0 ? void 0 : validation.some(function (subArray) {
+    return subArray.includes("required");
+  })) ? ' *' : ''), children, comment && /*#__PURE__*/React.createElement(CommentComponent, {
     className: commentClass
   }, comment), /*#__PURE__*/React.createElement(ErrorMessage, {
     name: name,

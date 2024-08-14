@@ -26,7 +26,8 @@ export default {
                 type: "field",
                 renderer: "text",
                 fieldType: "text",
-                comment: "This is a field comment. You can add your text here."
+                comment: "This is a field comment. You can add your text here.",
+               
             },
             inputGroup: {
                 type: 'container',
@@ -266,7 +267,8 @@ export default {
                     onDrop: (formik, config, acceptedFiles) => {
                         console.log(formik, config, acceptedFiles);
                     }
-                }
+                },
+            
             },
             
             buttonsGroup: {

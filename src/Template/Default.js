@@ -17,8 +17,11 @@ const Default = ({
     commentAs: CommentComponent = 'small',
     errorClass,
     errorAs,
-    children
+    children,
+    validation
+
 }) => {
+   // console.log('validation----',validation)
     const Component = !wrapAs ? Fragment : wrapAs;
     const componentProps = !wrapAs ? {} : {
         className: htmlClass,
@@ -27,7 +30,7 @@ const Default = ({
 
     return (
         <Component { ...componentProps }>
-            { label && <Label htmlFor={ name } className={ labelClass }>{ label }</Label> }
+            { label && <Label htmlFor={ name } className={ labelClass }>{ label }{validation?.some(subArray => subArray.includes("required"))?' *':''}</Label> }
             { children }
             { comment && <CommentComponent className={ commentClass }>{ comment }</CommentComponent> }
             <ErrorMessage name={ name } error={ error } className={ errorClass } as={ errorAs } />
