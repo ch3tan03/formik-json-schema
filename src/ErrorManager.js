@@ -31,10 +31,13 @@ const ErrorManager = ({ name, children }) => {
     const isTouched = _.get(touched, name);
     const errorMessage = _.get(errors, name);
     const error = !_.isEmpty(errorMessage) && (isTouched || formikSubmitCount > submitCount) ? errorMessage : false;
-    if(error && isSubmitting && formikSubmitCount===1){
+    if(error && isSubmitting ){
        // console.log('error--->',error, isSubmitting, formikSubmitCount)
-        toast.error(error);
-
+       // toast.error(error);
+     //  toast.dismiss();
+        toast.error('Please fill in all required fields.', {
+            toastId: 'error1'
+          })
     
     }
   
