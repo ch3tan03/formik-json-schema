@@ -8,7 +8,12 @@ export var SchemaProvider = function SchemaProvider(_ref) {
     children = _ref.children;
   return /*#__PURE__*/React.createElement(SchemaContext.Provider, {
     value: value
-  }, children, /*#__PURE__*/React.createElement(ToastContainer, null));
+  }, children, /*#__PURE__*/React.createElement(ToastContainer, {
+    limit: 1,
+    closeButton: null,
+    pauseOnHover: false,
+    closeOnClick: false
+  }));
 };
 var withFormConfig = function withFormConfig(WrappedComponent) {
   return function (props) {

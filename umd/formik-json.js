@@ -51842,7 +51842,12 @@ var withFormConfig_SchemaProvider = function SchemaProvider(_ref) {
     children = _ref.children;
   return /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(SchemaContext.Provider, {
     value: value
-  }, children, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(react_toastify_esm_A, null));
+  }, children, /*#__PURE__*/external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(react_toastify_esm_A, {
+    limit: 1,
+    closeButton: null,
+    pauseOnHover: false,
+    closeOnClick: false
+  }));
 };
 var withFormConfig_withFormConfig = function withFormConfig(WrappedComponent) {
   return function (props) {
@@ -52035,9 +52040,13 @@ var ErrorManager_ErrorManager = function ErrorManager(_ref) {
   var isTouched = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.get(touched, name);
   var errorMessage = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.get(errors, name);
   var error = !external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.isEmpty(errorMessage) && (isTouched || formikSubmitCount > submitCount) ? errorMessage : false;
-  if (error && isSubmitting && formikSubmitCount === 1) {
+  if (error && isSubmitting) {
     // console.log('error--->',error, isSubmitting, formikSubmitCount)
-    W.error(error);
+    // toast.error(error);
+    //  toast.dismiss();
+    W.error('Please fill in all required fields.', {
+      toastId: 'error1'
+    });
   }
   return children(error);
 };
