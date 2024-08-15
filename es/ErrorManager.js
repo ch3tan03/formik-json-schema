@@ -39,7 +39,7 @@ var ErrorManager = function ErrorManager(_ref) {
   var errorMessage = _.get(errors, name);
   var error = !_.isEmpty(errorMessage) && (isTouched || formikSubmitCount > submitCount) ? errorMessage : false;
   if (error && isSubmitting) {
-    console.log('error--->', error, isSubmitting, formikSubmitCount);
+    // console.log('error--->',error, isSubmitting, formikSubmitCount)
     // toast.error(error);
     //  toast.dismiss();
     toast.error('Please fill in all required fields.', {
