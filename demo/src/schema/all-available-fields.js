@@ -266,8 +266,10 @@ export default {
                     multiple: true,
                     onDrop: (formik, config, acceptedFiles) => {
                         console.log(formik, config, acceptedFiles);
-                    }
+                    },
                 },
+                
+
             
             },
             

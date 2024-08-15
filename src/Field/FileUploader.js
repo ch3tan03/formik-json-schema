@@ -70,7 +70,7 @@ const prepareFileUploderOptions = ({ onDrop, onDropAccepted, onDropRejected, ...
 
 let thumbset = {}
 const FileUploader = ({ config, formik, value, error }) => {
-    console.log('config, formik, value',config.name)
+   // console.log('config, formik, value',config.name)
     if(!thumbset[config.name]){
         thumbset[config.name] =[]
     }

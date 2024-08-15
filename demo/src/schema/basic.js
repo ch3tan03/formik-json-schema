@@ -48,6 +48,23 @@ export default {
                     ['email']
                 ]
             },
+            fileUploader: {
+                name: "fileUploader1",
+                label: "File Uploader",
+                type: "field",
+                renderer: "file-uploader",
+                validation: [['object'], ['required']],
+
+                options: {
+                    accept: ['image/*', 'text/*'],
+                    multiple: true,
+                    //required: true,
+                    onDrop: (formik, config, acceptedFiles) => {
+                        console.log(formik, config, acceptedFiles);
+                    },
+                   
+                   
+                }},
             telephone: {
                 name: "telephone",
                 label: "Telephone (enabled if email is empty)",

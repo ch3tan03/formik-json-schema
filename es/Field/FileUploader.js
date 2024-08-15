@@ -72,7 +72,7 @@ var FileUploader = function FileUploader(_ref3) {
     formik = _ref3.formik,
     value = _ref3.value,
     error = _ref3.error;
-  console.log('config, formik, value', config.name);
+  // console.log('config, formik, value',config.name)
   if (!thumbset[config.name]) {
     thumbset[config.name] = [];
   }
