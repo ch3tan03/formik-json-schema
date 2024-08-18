@@ -9,6 +9,8 @@ import Element from './Element';
 import { SchemaProvider } from './withFormConfig';
 import { prepareValidationSchema } from './utils';
 import Rules from '@flipbyte/yup-schema';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 var FormikForm = function FormikForm(_ref) {
   var onUpdate = _ref.onUpdate,
     schema = _ref.schema,
@@ -75,6 +77,11 @@ var Form = React.forwardRef(function (_ref2, ref) {
       onUpdate: onUpdate,
       schema: schema
     }, props));
+  }), /*#__PURE__*/React.createElement(ToastContainer, {
+    limit: 1,
+    closeButton: null,
+    pauseOnHover: false,
+    closeOnClick: false
   }));
 });
 export default Form;
