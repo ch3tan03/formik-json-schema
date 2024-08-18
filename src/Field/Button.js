@@ -1,16 +1,28 @@
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 
 const Button = ({ config, formik }) => {
     const { content, fieldClass, buttonType, onClick } = config;
     const { isSubmitting } = formik;
+console.log(formik.errors, Object.keys(formik.errors).length)
+if(Object.keys(formik.errors).length ===1){
+    //toast.error(formik.errors)
+    
+      Object.values(formik.errors).forEach(value => {
+        toast.error('Conditional field, '+value, {
+            toastId: 'error1'
+          })
+      });
 
+}
     let buttonProps = {
         type: buttonType ? buttonType : 'button' ,
         className: 'btn ' + fieldClass,
-        disabled: isSubmitting
+    disabled: isSubmitting
     };
 
     if(typeof onClick === 'function') {
+
         buttonProps.onClick = onClick.bind(this, formik, config);
     }
 
