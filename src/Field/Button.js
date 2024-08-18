@@ -5,16 +5,15 @@ const Button = ({ config, formik }) => {
     const { content, fieldClass, buttonType, onClick } = config;
     const { isSubmitting } = formik;
 //console.log(formik.errors, Object.keys(formik.errors).length)
-if(Object.keys(formik.errors).length ===1){
-    //toast.error(formik.errors)
-    
-      Object.values(formik.errors).forEach(value => {
-        toast.error('Conditional field, '+value, {
-            toastId: 'error1'
-          })
-      });
+// if(Object.keys(formik.errors).length ===1){
+   
+//       Object.values(formik.errors).forEach(value => {
+//         toast.error('Conditional field, '+value, {
+//             toastId: 'error1'
+//           })
+//       });
      
-}
+// }
     let buttonProps = {
         type: buttonType ? buttonType : 'button' ,
         className: 'btn ' + fieldClass,

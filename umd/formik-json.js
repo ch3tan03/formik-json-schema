@@ -1,5 +1,5 @@
 /*!
- * @flipbyte/formik-json v0.6.3
+ * @flipbyte/formik-json v0.6.5
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -52615,15 +52615,15 @@ var Button_Button = function Button(_ref) {
     onClick = config.onClick;
   var isSubmitting = formik.isSubmitting;
   //console.log(formik.errors, Object.keys(formik.errors).length)
-  if (Object.keys(formik.errors).length === 1) {
-    //toast.error(formik.errors)
+  // if(Object.keys(formik.errors).length ===1){
 
-    Object.values(formik.errors).forEach(function (value) {
-      W.error('Conditional field, ' + value, {
-        toastId: 'error1'
-      });
-    });
-  }
+  //       Object.values(formik.errors).forEach(value => {
+  //         toast.error('Conditional field, '+value, {
+  //             toastId: 'error1'
+  //           })
+  //       });
+
+  // }
   var buttonProps = {
     type: buttonType ? buttonType : 'button',
     className: 'btn ' + fieldClass,
