@@ -1,5 +1,5 @@
 /*!
- * @flipbyte/formik-json v0.6.2
+ * @flipbyte/formik-json v0.6.3
  * MIT Licensed
  */
 (function webpackUniversalModuleDefinition(root, factory) {
@@ -52034,7 +52034,7 @@ var ErrorManager_ErrorManager = function ErrorManager(_ref) {
   var errorMessage = external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.get(errors, name);
   var error = !external_root_commonjs2_lodash_commonjs_lodash_amd_lodash_default.a.isEmpty(errorMessage) && (isTouched || formikSubmitCount > submitCount) ? errorMessage : false;
   if (error && isSubmitting) {
-    // console.log('error--->',error, isSubmitting, formikSubmitCount)
+    console.log('error--->', error, isSubmitting, formikSubmitCount);
     // toast.error(error);
     //  toast.dismiss();
     W.error('Please fill in all required fields.', {
@@ -52124,6 +52124,7 @@ var Renderer_ElementRenderer = function ElementRenderer(_ref2) {
    * to decide whether to show and/or enable them or not.
    */
   Object(external_root_React_commonjs2_react_commonjs_react_amd_react_["useEffect"])(function () {
+    // console.log('test1',values, showWhen, enabledWhen)
     Promise.all([showWhen ? when_condition_es(showWhen, values) : true, enabledWhen ? when_condition_es(enabledWhen, values) : true]).then(function (_ref3) {
       var canShow = _ref3[0],
         enabled = _ref3[1];
@@ -52604,6 +52605,7 @@ var Radio_Radio = function Radio(_ref) {
 // CONCATENATED MODULE: ./src/Field/Button.js
 var Button_this = undefined;
 
+
 var Button_Button = function Button(_ref) {
   var config = _ref.config,
     formik = _ref.formik;
@@ -52612,6 +52614,16 @@ var Button_Button = function Button(_ref) {
     buttonType = config.buttonType,
     onClick = config.onClick;
   var isSubmitting = formik.isSubmitting;
+  //console.log(formik.errors, Object.keys(formik.errors).length)
+  if (Object.keys(formik.errors).length === 1) {
+    //toast.error(formik.errors)
+
+    Object.values(formik.errors).forEach(function (value) {
+      W.error('Conditional field, ' + value, {
+        toastId: 'error1'
+      });
+    });
+  }
   var buttonProps = {
     type: buttonType ? buttonType : 'button',
     className: 'btn ' + fieldClass,

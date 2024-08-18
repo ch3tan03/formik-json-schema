@@ -1,5 +1,6 @@
 var _this = this;
 import React from 'react';
+import { ToastContainer, toast } from 'react-toastify';
 var Button = function Button(_ref) {
   var config = _ref.config,
     formik = _ref.formik;
@@ -8,6 +9,16 @@ var Button = function Button(_ref) {
     buttonType = config.buttonType,
     onClick = config.onClick;
   var isSubmitting = formik.isSubmitting;
+  //console.log(formik.errors, Object.keys(formik.errors).length)
+  if (Object.keys(formik.errors).length === 1) {
+    //toast.error(formik.errors)
+
+    Object.values(formik.errors).forEach(function (value) {
+      toast.error('Conditional field, ' + value, {
+        toastId: 'error1'
+      });
+    });
+  }
   var buttonProps = {
     type: buttonType ? buttonType : 'button',
     className: 'btn ' + fieldClass,

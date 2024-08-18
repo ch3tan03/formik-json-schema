@@ -77,6 +77,7 @@ var ElementRenderer = function ElementRenderer(_ref2) {
    * to decide whether to show and/or enable them or not.
    */
   useEffect(function () {
+    // console.log('test1',values, showWhen, enabledWhen)
     Promise.all([showWhen ? when(showWhen, values) : true, enabledWhen ? when(enabledWhen, values) : true]).then(function (_ref3) {
       var canShow = _ref3[0],
         enabled = _ref3[1];
