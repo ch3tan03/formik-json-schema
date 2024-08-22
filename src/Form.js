@@ -5,8 +5,7 @@ import Element from './Element';
 import { SchemaProvider } from './withFormConfig';
 import { prepareValidationSchema } from './utils';
 import Rules from '@flipbyte/yup-schema';
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 const FormikForm = ({ onUpdate, schema, ...formik }) => {
     /**
@@ -65,7 +64,6 @@ const Form = React.forwardRef(({ schema, onUpdate = () => { }, initialValues = {
                     />
                 )}
             </Formik>
-            <ToastContainer limit={1} closeButton={null} pauseOnHover={false} closeOnClick={false}/>
 
         </SchemaProvider>
     );

@@ -1,6 +1,6 @@
 {
     "name": "@flipbyte/formik-json",
-    "version": "0.6.5",
+    "version": "0.6.6",
     "description": "formik-json is a wrapper for Formik to easily create forms using JSON / Javascript Object for defining the elements",
     "main": "lib/index.js",
     "module": "es/index.js",
@@ -38,7 +38,7 @@
         "react-select": "^2.3.0",
         "react-sortable-hoc": "^1.11.0",
         "react-switch": "^5.0.1",
-        "react-toastify": "^9.0.0",
+        "react-toastify": "^9.0.3",
         "shallowequal": "^1.1.0"
     },
     "peerDependencies": {

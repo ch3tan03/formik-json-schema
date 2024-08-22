@@ -1,6 +1,5 @@
 var _this = this;
 import React from 'react';
-import { ToastContainer, toast } from 'react-toastify';
 var Button = function Button(_ref) {
   var config = _ref.config,
     formik = _ref.formik;
